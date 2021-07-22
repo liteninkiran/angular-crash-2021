@@ -9,8 +9,8 @@ export class HeaderComponent implements OnInit {
 
     public title = 'Task Tracker';
 
-    public colour: string = 'blue';
-    public text: string = 'Start';
+    public colour: string = 'green';
+    public text: string = 'Add';
 
     constructor() { }
 
