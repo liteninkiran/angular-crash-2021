@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
+import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-header',
@@ -8,16 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
     public title = 'Task Tracker';
+    public showAddTask: boolean = false;
+    public subscription: Subscription;
 
-    public colour: string = 'green';
-    public text: string = 'Add';
-
-    constructor() { }
+    constructor(private uiService: UiService) {
+        this.subscription = this.uiService.onToggle().subscribe(value => this.showAddTask = value);
+    }
 
     ngOnInit(): void {
     }
 
-    public toggleAddTask() {
-        alert('Toggle');
+    public toggleAddTask(): boolean {
+        this.uiService.toggleAddTask();
+        return true;
     }
 }
