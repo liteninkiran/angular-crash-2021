@@ -29,4 +29,8 @@ export class TasksComponent implements OnInit {
         return true;
     }
 
+    addTask(task: Task): boolean {
+        this.taskService.addTask(task).subscribe((tk) => this.tasks.push(tk));
+        return true;
+    }
 }
